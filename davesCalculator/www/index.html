@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+  </head>
+  <body ng-app="starter">
+
+    <ion-pane>
+      <ion-header-bar class="bar bar-header bar-assertive">
+        <h1 class="title">David's Calculator</h1>
+      </ion-header-bar>
+      <ion-content>
+		<div id="calculator">
+			<form>
+			<center>
+				<input type="text" id="display">
+				<input type="button" value="C" id="keys" onclick="addtoscreen('c')"><br>
+				<input type="button" value="<--" id="keys" onclick="backspace()">
+				<input type="button" value="x^3" id="keys" onclick="power(3)">
+				<input type="button" value="x^2" id="keys" onclick="power(2)">
+				<input type="button" value="+" id="keys" onclick="addtoscreen('+')"><br>
+				
+				<input type="button" value="9" id="keys" onclick="addtoscreen('9')">
+				<input type="button" value="8" id="keys" onclick="addtoscreen('8')">
+				<input type="button" value="7" id="keys" onclick="addtoscreen('7')">
+				<input type="button" value="-" id="keys" onclick="addtoscreen('-')"><br>
+				
+				<input type="button" value="6" id="keys" onclick="addtoscreen('6')">
+				<input type="button" value="5" id="keys" onclick="addtoscreen('5')">
+				<input type="button" value="4" id="keys" onclick="addtoscreen('4')">
+				<input type="button" value="*" id="keys" onclick="addtoscreen('*')"><br>
+				
+				<input type="button" value="3" id="keys" onclick="addtoscreen('3')">
+				<input type="button" value="2" id="keys" onclick="addtoscreen('2')">
+				<input type="button" value="1" id="keys" onclick="addtoscreen('1')">
+				<input type="button" value="/" id="keys" onclick="addtoscreen('/')"><br>
+				
+				<input type="button" value="0" id="keys" onclick="addtoscreen('0')">
+				<input type="button" value="." id="keys" onclick="addtoscreen('.')">	
+				<input type="button" value="=" id="equal" onclick="answer()">
+				
+			</center>
+			</form>
+		</div>	 
+		<script>
+			var box=document.getElementById('display');
+
+				function addtoscreen(x){
+					box.value += x;
+					
+					if(x=='c'){
+						box.value='';
+					}
+				}
+				
+				function answer(){
+					x=box.value;
+					x=eval(x);
+					box.value=x;
+				}
+				
+				function backspace(){
+					var number=box.value;
+					var len=number.length-1;
+					var newnumber=number.substring(0,len);
+					box.value=newnumber;
+				}
+				
+				function power(y){
+					x=box.value;
+					x=Math.pow(x,y);
+					box.value=x;
+				}
+				
+		</script>
+      </ion-content>
+    </ion-pane>
+  </body>
+</html>
